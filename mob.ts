@@ -31,8 +31,8 @@ class Ufo extends Entity {
 
     constructor(pos: Point) {
         super( pos )
-        this.sprite = new AnimatedSprite(ImageResource.UFO, { x: 100, y:58 })
-        this.sprite.renderPivot = { x: 50, y: 30}
+        this.sprite = new AnimatedSprite(ImageResource.UFO, { x: 131, y:75 })
+        this.sprite.renderPivot = { x: 65, y: 40}
         this.collisionRadiusSqare = CONST.MOB_UFO_RADIUS * CONST.MOB_UFO_RADIUS 
 
         this.behaviors.push(new AnimatedBehavior(CONST.MOB_UFO_ANIMATION_LENGHT))        

@@ -23,11 +23,11 @@ const CONST = {
     MOB_BIRD_ANIMATION_LENGHT: 0.2, // time for one animation cycle of the birds
     MOB_BIRD_MOVE_RANGE: 400,   // movement range of bird mobs
     MOB_BIRD_MOVE_TIME: 10, // time it takes for the bird to move through its range
-    MOB_UFO_RADIUS: 45, // radius of the collision hitcircle
+    MOB_UFO_RADIUS: 55, // radius of the collision hitcircle
     MOB_UFO_ANIMATION_LENGHT: 0.2, // time for one animation cycle of the birds
 
     // now it gets techical
-    DEBUG_SHOW_COLLIDERS: false,
+    DEBUG_SHOW_COLLIDERS: true,
     CHUNK_WIDTH: 500, // width of an area where objects spawn / despawn
     CHUNK_NUMBER: 3, // number of chunks
     METER: 40 // pixels per meter
