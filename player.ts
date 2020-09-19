@@ -1,4 +1,4 @@
-class Player implements Entity {
+class Player extends Entity {
     pos: Point;
     sprite: CanvasImageSource;
     renderPivot: Point = {x:32, y:64};
@@ -8,7 +8,7 @@ class Player implements Entity {
     private velocity: Point = {x: 0, y:0};
 
     constructor() {
-        this.pos = { x: 0, y: -500};
+        super( { x: 0, y: -500} );
         let image = new Image();
         Resources.setImage(this, ImageResource.PLAYER);
     }
@@ -41,7 +41,7 @@ class Player implements Entity {
         let disty = this.pos.y - point.y;
         let dist = Math.sqrt(distx * distx + disty * disty);
 
-        let force = 10000 / ( dist * dist + 100 )
+        let force = 100000 / ( dist * dist + 100 )
         let normalized: Point = { x: distx / dist, y: disty / dist };
 
         // it would be more physically correct to add the explosion force, but

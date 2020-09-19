@@ -5,9 +5,16 @@ interface Point {
     y: number
 }
 
-interface Entity {
-    pos: Point;
-    sprite: CanvasImageSource;
-    renderPivot: Point;
-    update(deltaTime: number, state:State) : void;
+abstract class Entity {
+    public pos: Point;
+    public sprite?: CanvasImageSource;
+    public renderPivot: Point;
+
+    constructor(pos: Point) {
+        this.pos = { x: pos.x, y: pos.y }
+        if (this.renderPivot === undefined) {
+            this.renderPivot = { x: 0, y: 0 }
+        }
+    }
+    public update(deltaTime: number, state:State) : void { };
 }

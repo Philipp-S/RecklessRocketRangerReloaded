@@ -1,6 +1,7 @@
 // handler for resources
 enum ImageResource {
-    PLAYER = "img/player.png"
+    PLAYER = "img/player.png",
+    BALLOON = "img/balloon_red.png"
 }
 
 class Resources {
