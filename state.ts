@@ -6,6 +6,7 @@ class State {
     public cursor: Cursor
     public player: Player
 
+    private lastChunkGenX = 0
 
     constructor() {
         this.entities = Array()
@@ -17,12 +18,9 @@ class State {
         this.cursor = new Cursor()
         this.entities.push(this.cursor)
 
-        
-        for(let i = 0; i < 10; i++) {
-            this.entities.push(new Mob({
-               x: Math.random() * CONST.SCREEN_WIDTH - CONST.SCREEN_WIDTH / 2,
-               y: Math.random() * -CONST.SCREEN_HEIGHT - 100
-            }))
+        for (var i = 0; i < CONST.CHUNK_NUMBER * CONST.CHUNK_WIDTH; i+= CONST.CHUNK_WIDTH) {
+            this.generateChunk(i)
+            this.generateChunk(-i - CONST.CHUNK_WIDTH)
         }
 
     }
@@ -35,7 +33,38 @@ class State {
     }
 
     update(deltaTime: number) {
+
+        // check for chunk regeneration
+        let cleanupRequired = false    
+        while (this.player.pos.x >= this.lastChunkGenX + CONST.CHUNK_WIDTH) {
+            let start = this.lastChunkGenX + CONST.CHUNK_WIDTH * CONST.CHUNK_NUMBER
+            this.generateChunk(start)
+            this.lastChunkGenX += CONST.CHUNK_WIDTH
+            cleanupRequired = true
+        }
+        while (this.player.pos.x <= this.lastChunkGenX - CONST.CHUNK_WIDTH){
+            let start = this.lastChunkGenX - CONST.CHUNK_WIDTH * (CONST.CHUNK_NUMBER + 1)
+            this.generateChunk(start)
+            this.lastChunkGenX -= CONST.CHUNK_WIDTH
+            cleanupRequired = true
+        }
+        if (cleanupRequired) {
+            this.entities = this.entities.filter(e => {
+                return (e.pos.x > this.lastChunkGenX - CONST.CHUNK_WIDTH * CONST.CHUNK_NUMBER) &&
+                       (e.pos.x < this.lastChunkGenX + CONST.CHUNK_WIDTH * CONST.CHUNK_NUMBER)
+            })
+        }
+
         this.entities.forEach(e => e.update(deltaTime, this))
+    }
+
+    private generateChunk(start: number) {
+        for(let i = 0; i < 10; i++) {
+            this.entities.push(new Mob({
+               x: Math.random() * CONST.CHUNK_WIDTH + start,
+               y: Math.random() * -CONST.SCREEN_HEIGHT - 100
+            }))
+        }
     }
 
 }
