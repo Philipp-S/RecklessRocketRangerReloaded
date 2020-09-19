@@ -19,6 +19,8 @@ const CONST = {
     ROCKET_SHOOTING_COOLDOWN: 1, // time in seconds between shooting rockets 
     EXPLOSION_FX_LIFETIME: 0.5, // lifetime of explosions in seconds
     MOB_BALLOON_RADIUS: 32, // radius of the collision hitcircle
+    MOB_BIRD_RADIUS: 45, // radius of the collision hitcircle
+    MOB_BIRD_ANIMATION_LENGHT: 0.2, // time for one animation cycle of the birds
 
     CHUNK_WIDTH: 500, // width of an area where objects spawn / despawn
     CHUNK_NUMBER: 3 // number of chunks

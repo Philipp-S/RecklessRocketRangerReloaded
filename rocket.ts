@@ -39,6 +39,8 @@ class Rocket extends Entity {
                 let distY = this.pos.y - other.pos.y
                 let distSquared = distX  * distX  + distY * distY
                 if (distSquared < other.collisionRadiusSqare) {
+                    // collision detected
+                    state.removeEntity(other)
                     this.explode(state)
                     return
                 }

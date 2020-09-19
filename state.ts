@@ -59,12 +59,9 @@ class State {
     }
 
     private generateChunk(start: number) {
-        for(let i = 0; i < 10; i++) {
-            this.entities.push(new Mob({
-               x: Math.random() * CONST.CHUNK_WIDTH + start,
-               y: Math.random() * -CONST.SCREEN_HEIGHT - 100
-            }))
-        }
+        MOB_LAYERS.forEach(layer => {
+            layer.spawn(this, start)
+        })
     }
 
 }
