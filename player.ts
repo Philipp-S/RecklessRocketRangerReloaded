@@ -1,7 +1,4 @@
 class Player extends Entity {
-    pos: Point
-    sprite: CanvasImageSource
-    renderPivot: Point = {x:32, y:32}
 
     private isGrounded = false
     private timeSinceLastRocket = 0
@@ -9,7 +6,8 @@ class Player extends Entity {
 
     constructor() {
         super( { x: 0, y: -500} )
-        Resources.setImage(this, ImageResource.PLAYER)
+        this.sprite = new SimpleSprite(ImageResource.PLAYER)
+        this.sprite.renderPivot = {x:32, y:32}
     }
 
     update(deltaTime: number, state: State) : void {

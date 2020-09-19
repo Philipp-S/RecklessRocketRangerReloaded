@@ -5,6 +5,9 @@ class Rocket extends Entity {
 
     constructor(pos: Point, direction: Point, initialVelocity: Point) {
         super(pos)
+        
+        this.sprite = new SimpleSprite(ImageResource.ROCKET)
+        this.sprite.renderPivot = {x: 19, y: 9}
 
         let distx = direction.x
         let disty = direction.y
@@ -13,12 +16,9 @@ class Rocket extends Entity {
         this.direction = { x: distx / dist, y: disty / dist }
         this.velocity = { x: this.direction.x * CONST.ROCKET_VELOCITY + initialVelocity.x,
                           y: this.direction.y * CONST.ROCKET_VELOCITY + initialVelocity.y }
-        //this.rotation = Math.atan(-this.direction.x / -this.direction.y)
-        this.rotation = Math.atan(this.direction.y / this.direction.x)
-        if (this.direction.x < 0) this.rotation += Math.PI
+        this.sprite.rotation = Math.atan(this.direction.y / this.direction.x)
+        if (this.direction.x < 0) this.sprite.rotation += Math.PI
 
-        this.renderPivot = {x: 19, y: 9}
-        Resources.setImage(this, ImageResource.ROCKET)
     }
 
     update(deltaTime: number, state: State) : void {

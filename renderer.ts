@@ -31,11 +31,11 @@ class Renderer {
                 this.ctx.save()
                 this.ctx.translate( Math.round(r.pos.x + offset.x),
                                     Math.round(r.pos.y + offset.y) )
-                if (r.rotation !== 0) { 
-                    this.ctx.rotate(r.rotation)
+                if (r.sprite.rotation !== 0) { 
+                    this.ctx.rotate(r.sprite.rotation)
                 }
-                this.ctx.translate( -r.renderPivot.x, -r.renderPivot.y) 
-                this.ctx.drawImage(r.sprite, 0 , 0 )
+                this.ctx.translate( -r.sprite.renderPivot.x, -r.sprite.renderPivot.y) 
+                this.ctx.drawImage(r.sprite.getImage(), 0 , 0 )
                 this.ctx.restore()
             }
         })
