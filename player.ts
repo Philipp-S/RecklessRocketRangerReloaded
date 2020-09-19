@@ -19,7 +19,14 @@ class Player extends Entity {
 
         // shooting
         if(Input.mouse.click) {
-            this.explosion({x: 0, y: 10})
+            let startPos = { x: this.pos.x,
+                             y: this.pos.y - CONST.ROCKET_START_HEIGHT }
+            state.entities.push(new Rocket(
+                startPos,
+                { x: state.cursor.pos.x - startPos.x,
+                  y: state.cursor.pos.y - startPos.y },
+                this.velocity
+            ))
         }
 
         // apply input

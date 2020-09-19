@@ -7,7 +7,7 @@ class Mob extends Entity {
     renderPivot: Point
 
     constructor(pos: Point) {
-        super( { x: pos.x, y:pos.y })
+        super( pos )
         Resources.setImage(this, ImageResource.BALLOON)
     }
 

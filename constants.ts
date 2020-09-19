@@ -12,5 +12,7 @@ const CONST = {
     PLAYER_FRICTION_GROUND: 0.999, // fraction of speed the player loses per second while grounded
     PLAYER_ACCEL_AIR: 1000, // player acceleration while airborne
     PLAYER_FRICTION_AIR: 0.7, // fraction of speed the player loses per second while airborne
-    PLAYER_GROUND_BOUNCE: 0.75 // how much the player bounces when impacting the ground
+    PLAYER_GROUND_BOUNCE: 0.75, // how much the player bounces when impacting the ground
+    ROCKET_VELOCITY: 1000, // speed of rockets in pixels per second
+    ROCKET_START_HEIGHT: 50 // hight at the player sprite where rockets are spawned
 }

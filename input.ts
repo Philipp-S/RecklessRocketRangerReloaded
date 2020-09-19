@@ -16,8 +16,11 @@ let Input = {
     setMouseState(event) {
         this.mouse.x = event.clientX;
         this.mouse.y = event.clientY;
+        let leftclick = event.buttons & 1;
+        if (!this.mouse.down && leftclick) {
+            this.mouse.click = true;
+        }
         this.mouse.down = (event.buttons & 1);
-        this.mouse.click = (event.buttons & 1);
     },
     
     // register the event listeners

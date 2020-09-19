@@ -6,9 +6,10 @@ interface Point {
 }
 
 abstract class Entity {
-    public pos: Point;
-    public sprite?: CanvasImageSource;
-    public renderPivot: Point;
+    public pos: Point
+    public sprite?: CanvasImageSource
+    public rotation: number = 0
+    public renderPivot: Point
 
     constructor(pos: Point) {
         this.pos = { x: pos.x, y: pos.y }
