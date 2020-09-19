@@ -1,27 +1,30 @@
 class Game {
     
-    public state: State; 
-    public renderer: Renderer; 
+    public state: State
+    public renderer: Renderer
+    private ui: UI
 
-    private lastUpdate: number;
+    private lastUpdate: number
 
     constructor() {
         Input.init();
-        this.state = new State();
-        this.renderer = new Renderer(document.getElementById("canvas_main") as HTMLCanvasElement);
-        this.lastUpdate = NaN;
+        this.state = new State()
+        this.renderer = new Renderer(document.getElementById("canvas_main") as HTMLCanvasElement)
+        this.ui = new UI()
+        this.lastUpdate = NaN
     }
 
     mainLoop(time: DOMHighResTimeStamp) {
-        let deltaTime = (time - this.lastUpdate) / 1000;
-        this.lastUpdate = time;
+        let deltaTime = (time - this.lastUpdate) / 1000
+        this.lastUpdate = time
 
         if (!isNaN(deltaTime)) {
-            this.state.update(deltaTime);
-            this.renderer.update(deltaTime, this.state);
-            Input.update();
+            this.state.update(deltaTime)
+            this.renderer.update(deltaTime, this.state)
+            this.ui.update(this.state.player)
+            Input.update()
         }
-        window.requestAnimationFrame(this.mainLoop.bind(this));
+        window.requestAnimationFrame(this.mainLoop.bind(this))
     }
 
     
@@ -29,8 +32,9 @@ class Game {
 
 window.onload = () => {
 
-    let game = new Game();
+    let game = new Game()
 
-    window.requestAnimationFrame(game.mainLoop.bind(game));
+    window.requestAnimationFrame(game.mainLoop.bind(game))
+    
 }
 

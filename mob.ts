@@ -66,7 +66,9 @@ class MobLayer {
 }
 
 const MOB_LAYERS = [
-    new MobLayer((pos) => new Balloon(pos), 200, 3000, 5),
+    new MobLayer((pos) => new Balloon(pos), 200, 1000, 5),
+    new MobLayer((pos) => new Balloon(pos), 200, 4000, 5),
+    new MobLayer((pos) => new Balloon(pos), 200, 10000, 5),
     new MobLayer((pos) => new Bird(pos),    4000, 1000, 5),
-    new MobLayer((pos) => new Bird(pos),    4000, 8000, 10),
+    new MobLayer((pos) => new Bird(pos),    4000, 12000, 10),
 ]
