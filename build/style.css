@@ -15,6 +15,30 @@
 
 }
 
+#preloader {
+    font-size: 48px;
+    font-family: Orbitron;
+    text-align: center;
+    margin: 0; 
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#preloader_frame {
+    margin:auto; 
+    border:5px solid black; 
+    border-radius: 5px;
+    width:1000px; 
+    padding:1px
+}
+
+#preloader_bar {
+    height:50px; 
+    width:0%; 
+    background-color: aqua;
+}
+
 .indicator {
     font-weight: bolder;
     color:red;

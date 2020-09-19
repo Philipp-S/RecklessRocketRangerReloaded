@@ -21,13 +21,22 @@
 </head>
 <body style="margin:0px">
 
-    <canvas id="canvas_main" width="1024" height="768" style="cursor: none">
+    <div id="preloader">
+        L O A D I N G
+        <div id="preloader_frame">
+            <div id="preloader_bar"></div>
+        </div>
+    </div>
+    <div id="game" style="display: none">
+        <canvas id="canvas_main" width="1024" height="768" style="cursor: none">
 
-    </canvas>
+        </canvas>
 
-    <div id= "ui_stats">
-        Altitude: <span id="ui_altitude" class="indicator"></span>m<br/>
-        Airborne: <span id="ui_airborne" class="indicator"></span>s<br/>
+        <div id= "ui_stats">
+            Altitude: <span id="ui_altitude" class="indicator"></span>m<br/>
+            Airborne: <span id="ui_airborne" class="indicator"></span>s<br/>
+        </div>
+        
     </div>
 
 </body>

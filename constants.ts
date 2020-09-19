@@ -27,7 +27,7 @@ const CONST = {
     MOB_UFO_ANIMATION_LENGHT: 0.2, // time for one animation cycle of the birds
 
     // now it gets techical
-    DEBUG_SHOW_COLLIDERS: true,
+    DEBUG_SHOW_COLLIDERS: false,
     CHUNK_WIDTH: 500, // width of an area where objects spawn / despawn
     CHUNK_NUMBER: 3, // number of chunks
     METER: 40 // pixels per meter

@@ -32,9 +32,14 @@ class Game {
 
 window.onload = () => {
 
-    let game = new Game()
+    let preloader = new Preloader();
 
-    window.requestAnimationFrame(game.mainLoop.bind(game))
+    preloader.onFinish( () => {
+        let game = new Game()
+        window.requestAnimationFrame(game.mainLoop.bind(game))
+    })
+    preloader.startLoading();
+
     
 }
 
