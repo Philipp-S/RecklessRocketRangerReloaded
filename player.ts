@@ -3,7 +3,7 @@ class Player extends Entity {
     private isGrounded = false
     private timeSinceLastRocket = 0
     private velocity: Point = {x: 0, y:0}
-    public airtime: number;
+    public airtime = 0;
 
     constructor() {
         super( { x: 0, y: -500} )

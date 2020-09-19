@@ -1,0 +1,21 @@
+
+#ui_stats {
+    position: fixed; 
+    left:0px; 
+    top:0px;
+    width: 256px;
+	border: 16px solid;
+	padding: 0px;
+	border-image: url('./img/gui_frame.png');
+	border-image-slice: 16 fill;
+    border-image-repeat: repeat;
+    color: #ffffff;
+    font-size: 24px;
+    font-family: Orbitron
+
+}
+
+.indicator {
+    font-weight: bolder;
+    color:red;
+}
