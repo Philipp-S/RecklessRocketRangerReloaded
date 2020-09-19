@@ -28,7 +28,9 @@ class Renderer {
         // objects
         state.entities.forEach(r => {
             if (r.sprite) {
-                this.ctx.drawImage(r.sprite, r.pos.x + offset.x - r.renderPivot.x, r.pos.y + offset.y - r.renderPivot.y )
+                let x = Math.round(r.pos.x + offset.x - r.renderPivot.x)
+                let y = Math.round(r.pos.y + offset.y - r.renderPivot.y)
+                this.ctx.drawImage(r.sprite,x ,y )
             }
         })
 

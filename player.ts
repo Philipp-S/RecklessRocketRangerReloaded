@@ -36,7 +36,7 @@ class Player extends Entity {
         if (this.isGrounded) {
             frictionFraction = Math.pow((1 - CONST.PLAYER_FRICTION_GROUND), deltaTime )
         } else {
-            frictionFraction = Math.pow((1 - CONST.PLAYER_FRICTION_GROUND), deltaTime )
+            frictionFraction = Math.pow((1 - CONST.PLAYER_FRICTION_AIR), deltaTime )
         }
         this.velocity.x *= frictionFraction
         this.velocity.y *= frictionFraction
