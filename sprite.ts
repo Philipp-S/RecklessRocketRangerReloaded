@@ -2,6 +2,7 @@ abstract class Sprite {
     public rotation: number = 0
     public renderPivot: Point = { x:0, y:0 }
     public isLoaded: boolean;
+    public flipped: boolean = false;
 
     public abstract draw(ctx: CanvasRenderingContext2D): void
 }
@@ -65,11 +66,15 @@ class AnimatedSprite extends Sprite {
     }
 
     public setProgress(time: number) {
+
         this.currentFrame = Math.floor(this.frames.length * time)
+        if (this.currentFrame < 0 ) this.currentFrame = 0
+        if (this.currentFrame >= this.frames.length ) this.currentFrame = this.frames.length - 1
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
         let frame = this.frames[this.currentFrame];
+        
         ctx.drawImage(  this.image, 
                         frame.x,    frame.y,    this.framesize.x, this.framesize.y,     // srcrect
                         0,          0,          this.framesize.x, this.framesize.y )    // dstrect

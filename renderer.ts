@@ -31,12 +31,25 @@ class Renderer {
                 this.ctx.save()
                 this.ctx.translate( Math.round(r.pos.x + offset.x),
                                     Math.round(r.pos.y + offset.y) )
+                
                 if (r.sprite.rotation !== 0) { 
                     this.ctx.rotate(r.sprite.rotation)
                 }
+                
+                if (r.sprite.flipped){
+                    this.ctx.scale(-1, 1)
+                }
                 this.ctx.translate( -r.sprite.renderPivot.x, -r.sprite.renderPivot.y) 
+                
                 r.sprite.draw(this.ctx)
                 this.ctx.restore()
+                
+                if (CONST.DEBUG_SHOW_COLLIDERS) {
+                    this.ctx.strokeStyle = "#ff0000"
+                    this.ctx.beginPath();
+                    this.ctx.arc(r.pos.x + offset.x, r.pos.y + offset.y, Math.sqrt(r.collisionRadiusSqare), 0, Math.PI * 2);
+                    this.ctx.stroke(); 
+                }
             }
         })
 

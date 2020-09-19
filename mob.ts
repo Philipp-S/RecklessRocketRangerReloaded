@@ -13,21 +13,34 @@ class Balloon extends Entity {
 }
 
 class Bird extends Entity {
-    anitime: number = 0
+    private anitime: number;
+    private movePhase: number;
+    private originalx: number;
 
     constructor(pos: Point) {
         super( pos )
+        this.anitime = Math.random() * CONST.MOB_BIRD_ANIMATION_LENGHT
         this.sprite = new AnimatedSprite(ImageResource.BIRD, { x: 182, y:117 })
         this.sprite.renderPivot = { x: 77, y: 77}
-        this.collisionRadiusSqare = CONST.MOB_BALLOON_RADIUS * CONST.MOB_BALLOON_RADIUS 
+        this.collisionRadiusSqare = CONST.MOB_BIRD_RADIUS * CONST.MOB_BIRD_RADIUS 
+        this.movePhase = Math.random() * CONST.MOB_BIRD_MOVE_TIME
+        this.originalx = pos.x
     }
 
     public update(deltaTime: number, state:State) : void { 
+        // update animation
         this.anitime += deltaTime
         while (this.anitime > CONST.MOB_BIRD_ANIMATION_LENGHT) {
             this.anitime -= CONST.MOB_BIRD_ANIMATION_LENGHT
         }
         (this.sprite as AnimatedSprite).setProgress(this.anitime / CONST.MOB_BIRD_ANIMATION_LENGHT)
+
+        // update position
+        this.movePhase += deltaTime
+        let phase = ((this.movePhase % CONST.MOB_BIRD_MOVE_TIME) / CONST.MOB_BIRD_MOVE_TIME) * Math.PI * 2
+        this.sprite.flipped = (phase < Math.PI / 2 || phase > Math.PI * 3 / 2)
+        this.pos.x = this.originalx + Math.sin(phase) * CONST.MOB_BIRD_MOVE_RANGE
+
     };
 }
 
