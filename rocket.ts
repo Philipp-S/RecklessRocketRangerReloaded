@@ -1,7 +1,6 @@
 class Rocket extends Entity {
 
     private velocity: Point;
-    private direction: Point;
 
     constructor(pos: Point, direction: Point, initialVelocity: Point) {
         super(pos)
@@ -13,11 +12,11 @@ class Rocket extends Entity {
         let disty = direction.y
         let dist = Math.sqrt(distx * distx + disty * disty)
 
-        this.direction = { x: distx / dist, y: disty / dist }
-        this.velocity = { x: this.direction.x * CONST.ROCKET_VELOCITY + initialVelocity.x,
-                          y: this.direction.y * CONST.ROCKET_VELOCITY + initialVelocity.y }
-        this.sprite.rotation = Math.atan(this.direction.y / this.direction.x)
-        if (this.direction.x < 0) this.sprite.rotation += Math.PI
+        let directionNormalized = { x: distx / dist, y: disty / dist }
+        this.velocity = { x: directionNormalized.x * CONST.ROCKET_VELOCITY + initialVelocity.x,
+                          y: directionNormalized.y * CONST.ROCKET_VELOCITY + initialVelocity.y }
+        this.sprite.rotation = Math.atan(directionNormalized.y / directionNormalized.x)
+        if (directionNormalized.x < 0) this.sprite.rotation += Math.PI
 
     }
 
@@ -50,6 +49,13 @@ class Rocket extends Entity {
 
     private explode(state: State) : void {
         state.removeEntity(this)
+        let explosionSprite = new AnimatedSprite(ImageResource.EXPLOSION, {x: 200, y: 200})
+        explosionSprite.renderPivot = {x:100, y:200}
+        explosionSprite.rotation = this.sprite.rotation - Math.PI / 2
+
+        state.entities.push(new Particle(this.pos,
+                                         explosionSprite,
+                                         CONST.EXPLOSION_FX_LIFETIME));
         state.player.explosion(this.pos)
     }
 }

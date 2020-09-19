@@ -16,7 +16,7 @@ class Renderer {
     }
 
 
-    update(state: State) {
+    update(deltaTime: number, state: State) {
         // background
         this.ctx.fillStyle = Renderer.COLOR_SKY
         this.ctx.fillRect(0, 0, CONST.SCREEN_WIDTH, CONST.SCREEN_HEIGHT)
@@ -27,7 +27,7 @@ class Renderer {
 
         // objects
         state.entities.forEach(r => {
-            if (r.sprite) {
+            if (r.sprite && r.sprite.isLoaded) {
                 this.ctx.save()
                 this.ctx.translate( Math.round(r.pos.x + offset.x),
                                     Math.round(r.pos.y + offset.y) )
@@ -35,7 +35,7 @@ class Renderer {
                     this.ctx.rotate(r.sprite.rotation)
                 }
                 this.ctx.translate( -r.sprite.renderPivot.x, -r.sprite.renderPivot.y) 
-                this.ctx.drawImage(r.sprite.getImage(), 0 , 0 )
+                r.sprite.draw(this.ctx)
                 this.ctx.restore()
             }
         })

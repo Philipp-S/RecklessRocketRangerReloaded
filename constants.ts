@@ -17,5 +17,6 @@ const CONST = {
     ROCKET_VELOCITY: 1000, // speed of rockets in pixels per second
     ROCKET_START_HEIGHT: 0, // hight at the player sprite where rockets are spawned
     ROCKET_SHOOTING_COOLDOWN: 1, // time in seconds between shooting rockets 
+    EXPLOSION_FX_LIFETIME: 0.5, // lifetime of explosions in seconds
     MOB_BALLOON_RADIUS: 32 // radius of the collision hitcircle
 }

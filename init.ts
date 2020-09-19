@@ -18,7 +18,7 @@ class Game {
 
         if (!isNaN(deltaTime)) {
             this.state.update(deltaTime);
-            this.renderer.update(this.state);
+            this.renderer.update(deltaTime, this.state);
             Input.update();
         }
         window.requestAnimationFrame(this.mainLoop.bind(this));
