@@ -19,7 +19,7 @@ const CONST = {
     ROCKET_START_HEIGHT: 0, // hight at the player sprite where rockets are spawned
     ROCKET_SHOOTING_COOLDOWN: 0.5, // time in seconds between shooting rockets 
     EXPLOSION_FX_LIFETIME: 0.5, // lifetime of explosions in seconds
-    MOB_BALLOON_RADIUS: 32, // radius of the collision hitcircle
+    MOB_BALLOON_RADIUS: 48, // radius of the collision hitcircle
     MOB_BIRD_RADIUS: 45, // radius of the collision hitcircle
     MOB_BIRD_ANIMATION_LENGHT: 0.2, // time for one animation cycle of the birds
     MOB_BIRD_MOVE_RANGE: 400,   // movement range of bird mobs

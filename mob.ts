@@ -6,7 +6,7 @@ class Balloon extends Entity {
     constructor(pos: Point) {
         super( pos )
         this.sprite = new SimpleSprite(ImageResource.BALLOON)
-        this.sprite.renderPivot = { x: 32, y: 32}
+        this.sprite.renderPivot = { x: CONST.MOB_BALLOON_RADIUS, y: CONST.MOB_BALLOON_RADIUS}
         this.collisionRadiusSqare = CONST.MOB_BALLOON_RADIUS * CONST.MOB_BALLOON_RADIUS 
     }
 
