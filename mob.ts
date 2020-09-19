@@ -27,6 +27,21 @@ class Bird extends Entity {
     }
 }
 
+class Ufo extends Entity {
+
+    constructor(pos: Point) {
+        super( pos )
+        this.sprite = new AnimatedSprite(ImageResource.UFO, { x: 100, y:58 })
+        this.sprite.renderPivot = { x: 77, y: 77}
+        this.collisionRadiusSqare = CONST.MOB_UFO_RADIUS * CONST.MOB_UFO_RADIUS 
+
+        this.behaviors.push(new AnimatedBehavior(CONST.MOB_UFO_ANIMATION_LENGHT))        
+        this.behaviors.push(new SineMovementBehavior(this, 600, 10, "x"))
+        this.behaviors.push(new SineMovementBehavior(this, 200, 4, "y"))
+    }
+}
+
+
 
 
 class MobLayer {
@@ -51,9 +66,11 @@ class MobLayer {
 }
 
 const MOB_LAYERS = [
-    new MobLayer((pos) => new Balloon(pos), 200, 500, 1),
-    new MobLayer((pos) => new Balloon(pos), 200, 4000, 10),
-    new MobLayer((pos) => new Balloon(pos), 200, 10000, 5),
-    new MobLayer((pos) => new Bird(pos),    4000, 1000, 5),
-    new MobLayer((pos) => new Bird(pos),    4000, 12000, 10),
+    new MobLayer((pos) => new Balloon(pos),   5 * CONST.METER,  10 * CONST.METER, 1),
+    new MobLayer((pos) => new Balloon(pos),   5 * CONST.METER, 100 * CONST.METER, 10),
+    new MobLayer((pos) => new Balloon(pos),   5 * CONST.METER, 300 * CONST.METER, 10),
+    new MobLayer((pos) => new Bird(pos),    100 * CONST.METER,  20 * CONST.METER, 5),
+    new MobLayer((pos) => new Bird(pos),    100 * CONST.METER, 400 * CONST.METER, 20),
+    new MobLayer((pos) => new Ufo(pos),     400 * CONST.METER, 150 * CONST.METER, 2),
+    new MobLayer((pos) => new Ufo(pos),     400 * CONST.METER, 1000 * CONST.METER, 20),
 ]

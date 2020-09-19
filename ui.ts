@@ -9,7 +9,7 @@ class UI {
     }
 
     update(player: Player) {
-        this.altitude_span.textContent = Math.floor(player.pos.y / -40).toString()
+        this.altitude_span.textContent = Math.floor(player.pos.y / -CONST.METER).toString()
         this.airborne_span.textContent = player.airtime.toFixed(1)
     }
 }
