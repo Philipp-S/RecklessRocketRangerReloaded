@@ -15,7 +15,7 @@ class Player extends Entity {
 
     update(deltaTime: number, state: State) : void {
         // apply gravity
-        this.velocity.y += 1000 * deltaTime;
+        this.velocity.y += CONST.GRAVITY * deltaTime;
 
         if(Input.mouse.click) {
             this.explosion({x: 0, y: 10});
@@ -41,7 +41,7 @@ class Player extends Entity {
         let disty = this.pos.y - point.y;
         let dist = Math.sqrt(distx * distx + disty * disty);
 
-        let force = 100000 / ( dist * dist + 100 )
+        let force = CONST.EXPLOSION_FORCE / ( dist * dist + CONST.EXPLOSION_MIN_RADIUS )
         let normalized: Point = { x: distx / dist, y: disty / dist };
 
         // it would be more physically correct to add the explosion force, but
