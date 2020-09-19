@@ -68,11 +68,11 @@ class AnimatedSprite extends Sprite {
     public setProgress(time: number) {
 
         this.currentFrame = Math.floor(this.frames.length * time)
-        if (this.currentFrame < 0 ) this.currentFrame = 0
-        if (this.currentFrame >= this.frames.length ) this.currentFrame = this.frames.length - 1
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
+        if (this.currentFrame < 0 ) this.currentFrame = 0
+        if (this.currentFrame >= this.frames.length ) this.currentFrame = this.frames.length - 1
         let frame = this.frames[this.currentFrame];
         
         ctx.drawImage(  this.image, 
