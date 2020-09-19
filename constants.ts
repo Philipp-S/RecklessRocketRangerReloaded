@@ -16,5 +16,6 @@ const CONST = {
     PLAYER_GROUND_BOUNCE: 0.75, // how much the player bounces when impacting the ground
     ROCKET_VELOCITY: 1000, // speed of rockets in pixels per second
     ROCKET_START_HEIGHT: 0, // hight at the player sprite where rockets are spawned
+    ROCKET_SHOOTING_COOLDOWN: 1, // time in seconds between shooting rockets 
     MOB_BALLOON_RADIUS: 32 // radius of the collision hitcircle
 }

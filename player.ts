@@ -4,7 +4,7 @@ class Player extends Entity {
     renderPivot: Point = {x:32, y:32}
 
     private isGrounded = false
-
+    private timeSinceLastRocket = 0
     private velocity: Point = {x: 0, y:0}
 
     constructor() {
@@ -15,7 +15,9 @@ class Player extends Entity {
     update(deltaTime: number, state: State) : void {
 
         // shooting
-        if(Input.mouse.click) {
+        this.timeSinceLastRocket += deltaTime
+        if(Input.mouse.click && this.timeSinceLastRocket >= CONST.ROCKET_SHOOTING_COOLDOWN) {
+            this.timeSinceLastRocket = 0
             let startPos = { x: this.pos.x,
                              y: this.pos.y - CONST.ROCKET_START_HEIGHT }
             state.entities.push(new Rocket(
