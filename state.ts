@@ -17,12 +17,14 @@ class State {
         this.cursor = new Cursor()
         this.entities.push(this.cursor)
 
+        
         for(let i = 0; i < 10; i++) {
             this.entities.push(new Mob({
-               x: Math.random() * 1024 - 512,
-               y: Math.random() * -768 - 100
+               x: Math.random() * CONST.SCREEN_WIDTH - CONST.SCREEN_WIDTH / 2,
+               y: Math.random() * -CONST.SCREEN_HEIGHT - 100
             }))
         }
+
     }
 
     removeEntity(entity: Entity) {

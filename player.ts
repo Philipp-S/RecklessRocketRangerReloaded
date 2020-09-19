@@ -1,7 +1,7 @@
 class Player extends Entity {
     pos: Point
     sprite: CanvasImageSource
-    renderPivot: Point = {x:32, y:64}
+    renderPivot: Point = {x:32, y:32}
 
     private isGrounded = false
 
@@ -9,13 +9,10 @@ class Player extends Entity {
 
     constructor() {
         super( { x: 0, y: -500} )
-        let image = new Image()
         Resources.setImage(this, ImageResource.PLAYER)
     }
 
     update(deltaTime: number, state: State) : void {
-        // apply gravity
-        this.velocity.y += CONST.GRAVITY * deltaTime
 
         // shooting
         if(Input.mouse.click) {
@@ -28,6 +25,9 @@ class Player extends Entity {
                 this.velocity
             ))
         }
+
+        // apply gravity
+        this.velocity.y += CONST.GRAVITY * deltaTime
 
         // apply input
         let controlForce = deltaTime * ( this.isGrounded ? CONST.PLAYER_ACCEL_GROUND : CONST.PLAYER_ACCEL_AIR )
@@ -53,11 +53,13 @@ class Player extends Entity {
         this.pos.y += this.velocity.y * deltaTime
 
         // ground collision checking
-        if (this.pos.y > 0) {
-            this.pos.y = 0;
+        if (this.pos.y > CONST.PLAYER_GROUND_COLLISION) {
+            this.pos.y = CONST.PLAYER_GROUND_COLLISION;
             if (!this.isGrounded) {
                 this.velocity.x *= CONST.PLAYER_GROUND_BOUNCE
                 this.velocity.y *= -CONST.PLAYER_GROUND_BOUNCE
+            } else {
+                this.velocity.y = 0
             }
             this.isGrounded = true
         } else {

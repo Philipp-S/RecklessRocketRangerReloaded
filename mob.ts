@@ -9,6 +9,8 @@ class Mob extends Entity {
     constructor(pos: Point) {
         super( pos )
         Resources.setImage(this, ImageResource.BALLOON)
+        this.renderPivot = { x: 32, y: 32}
+        this.collisionRadiusSqare = CONST.MOB_BALLOON_RADIUS * CONST.MOB_BALLOON_RADIUS 
     }
 
 }

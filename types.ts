@@ -10,6 +10,7 @@ abstract class Entity {
     public sprite?: CanvasImageSource
     public rotation: number = 0
     public renderPivot: Point
+    collisionRadiusSqare: number = 0
 
     constructor(pos: Point) {
         this.pos = { x: pos.x, y: pos.y }

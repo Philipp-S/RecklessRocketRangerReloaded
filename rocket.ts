@@ -23,13 +23,28 @@ class Rocket extends Entity {
 
     update(deltaTime: number, state: State) : void {
         // fly
-        this.pos.x += this.velocity.x * deltaTime;
-        this.pos.y += this.velocity.y * deltaTime;
+        this.pos.x += this.velocity.x * deltaTime
+        this.pos.y += this.velocity.y * deltaTime
 
-        // explode
+        // explode on ground contact
         if (this.pos.y >= 0) {
             this.explode(state)
+            return
         }
+
+        // explode on enemy contact
+        // There might be some optimization potential here. But this is a game jam, so who cares about performance :)
+        state.entities.forEach(other => {
+            if (other.collisionRadiusSqare > 0) {
+                let distX = this.pos.x - other.pos.x
+                let distY = this.pos.y - other.pos.y
+                let distSquared = distX  * distX  + distY * distY
+                if (distSquared < other.collisionRadiusSqare) {
+                    this.explode(state)
+                    return
+                }
+            }
+        }, this)
 
     }
 
