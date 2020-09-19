@@ -1,18 +1,19 @@
 // the main game-state class
 class State {
 
-    public cameraFocus: Point 
+    public camera: Camera 
     public entities: Entity[]
 
     private player: Player
 
 
     constructor() {
-        this.cameraFocus = {x:0, y: -200}
         this.entities = Array()
 
         this.player = new Player()
         this.entities.push(this.player)
+        this.camera = new Camera(this.player)
+        this.entities.push(this.camera)
 
         for(let i = 0; i < 10; i++) {
             this.entities.push(new Mob({

@@ -19,7 +19,7 @@ class Renderer {
         this.ctx.fillStyle = Renderer.COLOR_SKY;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         // ground
-        let offset: Point = { x: this.canvas.width / 2 - state.cameraFocus.x, y: this.canvas.height / 2 - state.cameraFocus.y };
+        let offset: Point = { x: this.canvas.width / 2 - state.camera.pos.x, y: this.canvas.height / 2 - state.camera.pos.y };
         this.ctx.fillStyle = Renderer.COLOR_GROUND;
         this.ctx.fillRect(0, offset.y, this.canvas.width, this.canvas.height);
 
