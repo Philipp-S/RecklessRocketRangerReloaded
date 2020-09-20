@@ -3,14 +3,16 @@ abstract class Sprite {
     public renderPivot: Point = { x:0, y:0 }
     public isLoaded: boolean;
     public flipped: boolean = false;
+    public alpha: number = 1.0
     public drawOrder: number;
+
+    public image: CanvasImageSource;
 
     public abstract draw(ctx: CanvasRenderingContext2D): void
 }
 
 class SimpleSprite extends Sprite {
     
-    private image: CanvasImageSource;
 
     public constructor(src: ImageResource) {
         super()
@@ -32,9 +34,7 @@ class SimpleSprite extends Sprite {
 }
 
 class AnimatedSprite extends Sprite {
-
     
-    private image: CanvasImageSource;
     private framesize: Point;
     private currentFrame = 0;
 

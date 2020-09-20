@@ -7,7 +7,9 @@ enum ImageResource {
     UFO = "img/ufo.png",
     CURSOR = "img/cursor.png",
     ROCKET = "img/rocket.png",
-    EXPLOSION = "img/explosion.png"
+    EXPLOSION = "img/explosion.png",
+    SPARK = "img/spark.png",
+    PUFF = "img/puff.png"
 }
 
 class Preloader {

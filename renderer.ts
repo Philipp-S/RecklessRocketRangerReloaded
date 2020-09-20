@@ -41,6 +41,7 @@ class Renderer {
                 }
                 this.ctx.translate( -r.sprite.renderPivot.x, -r.sprite.renderPivot.y) 
                 
+                this.ctx.globalAlpha = r.sprite.alpha
                 r.sprite.draw(this.ctx)
                 this.ctx.restore()
                 

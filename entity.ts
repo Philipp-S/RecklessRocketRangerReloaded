@@ -95,7 +95,7 @@ class FlyForwardBehavior extends Behavior {
 
     private velocity: Point;
 
-    constructor(entity: Entity, pos: Point, direction: Point, initialVelocity: Point) {
+    constructor(entity: Entity, direction: Point, velocity: number, initialVelocity: Point) {
         super()
 
         let distx = direction.x
@@ -103,8 +103,8 @@ class FlyForwardBehavior extends Behavior {
         let dist = Math.sqrt(distx * distx + disty * disty)
 
         let directionNormalized = { x: distx / dist, y: disty / dist }
-        this.velocity = { x: directionNormalized.x * CONST.ROCKET_VELOCITY + initialVelocity.x,
-                          y: directionNormalized.y * CONST.ROCKET_VELOCITY + initialVelocity.y }
+        this.velocity = { x: directionNormalized.x * velocity + initialVelocity.x,
+                          y: directionNormalized.y * velocity + initialVelocity.y }
         entity.sprite.rotation = Math.atan(directionNormalized.y / directionNormalized.x)
         if (directionNormalized.x < 0) entity.sprite.rotation += Math.PI
     }
@@ -152,25 +152,46 @@ class ExplodeOnImpactBehavior extends Behavior {
 
         state.addEntity(new Particle(entity.pos,
                                          explosionSprite,
-                                         CONST.EXPLOSION_FX_LIFETIME));
+                                         CONST.EXPLOSION_FX_LIFETIME,
+                                         false,
+                                         0));
         state.player.explosion(entity.pos)
     }
 }
 
 
 class SelfDestructBehavior extends Behavior {
-    private initialLifetime: number;
-    private lifetimeLeft: number;
+    private initialLifetime: number
+    private lifetimeLeft: number
+    private fade: boolean
 
-    constructor(lifetime: number) {
+    constructor(lifetime: number, fade: boolean) {
         super()
         this.lifetimeLeft = lifetime
         this.initialLifetime = lifetime
+        this.fade = fade
     }
 
     update(entity:Entity, deltaTime: number, state: State) : void {
         this.lifetimeLeft -= deltaTime;
         if (this.lifetimeLeft < 0) {
+            state.removeEntity(entity)
+        }
+        if (this.fade) {
+            entity.sprite.alpha = this.lifetimeLeft / this.initialLifetime
+        }
+    }
+}
+
+let SelfDestructIfOffscreen = new class extends Behavior {
+
+    update(entity:Entity, deltaTime: number, state: State) : void {
+        if (entity.pos.x - state.camera.pos.x > CONST.SCREEN_WIDTH || 
+            entity.pos.x - state.camera.pos.x < -CONST.SCREEN_WIDTH || 
+            entity.pos.y - state.camera.pos.y > CONST.SCREEN_HEIGHT || 
+            entity.pos.y - state.camera.pos.y < -CONST.SCREEN_HEIGHT
+            ) 
+        {
             state.removeEntity(entity)
         }
     }

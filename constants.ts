@@ -11,7 +11,7 @@ const CONST = {
     EXPLOSION_MIN_RADIUS: 64, //radius in pixels from within the maximum explosion force is applied
     EXPLOSION_MAX_RADIUS: 640, //radius in pixels from without explosions are completely ignored
     PLAYER_GROUND_COLLISION: -46, //distance in pixels between player center of mass and feet
-    PLAYER_ACCEL_GROUND: 2000, // player acceleration on ground
+    PLAYER_ACCEL_GROUND: 0, // player acceleration on ground
     PLAYER_FRICTION_GROUND: 0.999, // fraction of speed the player loses per second while grounded
     PLAYER_ACCEL_AIR: 1000, // player acceleration while airborne
     PLAYER_FRICTION_AIR: 0.5, // fraction of speed the player loses per second while airborne
