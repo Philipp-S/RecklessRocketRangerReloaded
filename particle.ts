@@ -8,7 +8,7 @@ class Particle extends Entity {
 
         this.behaviors.push(new SelfDestructBehavior(lifetime))
         if ("setProgress" in this.sprite) {
-            this.behaviors.push(new AnimatedBehavior(lifetime))
+            this.behaviors.push(new AnimatedBehavior(lifetime, false))
         }
         
     }

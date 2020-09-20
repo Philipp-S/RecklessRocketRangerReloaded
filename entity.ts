@@ -69,11 +69,15 @@ class AnimatedBehavior extends Behavior {
     private time: number
     private duration: number
 
-    constructor(cycleDuration: number) {
+    constructor(cycleDuration: number, randomize:boolean) {
         super()
         
-        this.time = Math.random() * cycleDuration
         this.duration = cycleDuration
+        if (randomize) {
+            this.time = Math.random() * cycleDuration
+        } else {
+            this.time = 0
+        }
     }
 
     public update(entity: Entity, deltaTime: number, state:State) : void { 

@@ -25,7 +25,7 @@ class Bird extends Entity {
         this.collisionRadiusSqare = CONST.MOB_BIRD_RADIUS * CONST.MOB_BIRD_RADIUS 
 
         this.behaviors.push(new SineMovementBehavior(this, CONST.MOB_BIRD_MOVE_RANGE, CONST.MOB_BIRD_MOVE_TIME, "x"))
-        this.behaviors.push(new AnimatedBehavior(CONST.MOB_BIRD_ANIMATION_LENGHT))        
+        this.behaviors.push(new AnimatedBehavior(CONST.MOB_BIRD_ANIMATION_LENGHT, true))        
     }
 }
 
@@ -38,7 +38,7 @@ class Ufo extends Entity {
         this.sprite.drawOrder = CONST.LAYER_MOBS
         this.collisionRadiusSqare = CONST.MOB_UFO_RADIUS * CONST.MOB_UFO_RADIUS 
 
-        this.behaviors.push(new AnimatedBehavior(CONST.MOB_UFO_ANIMATION_LENGHT))        
+        this.behaviors.push(new AnimatedBehavior(CONST.MOB_UFO_ANIMATION_LENGHT, true))        
         this.behaviors.push(new SineMovementBehavior(this, 600, 10, "x"))
         this.behaviors.push(new SineMovementBehavior(this, 200, 4, "y"))
     }
