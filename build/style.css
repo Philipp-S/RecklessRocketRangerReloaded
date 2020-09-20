@@ -2,7 +2,7 @@
 #ui_stats {
     position: fixed; 
     left:0px; 
-    top:0px;
+    bottom:0px;
     width: 256px;
 	border: 16px solid;
 	padding: 0px;
@@ -12,7 +12,23 @@
     color: #ffffff;
     font-size: 24px;
     font-family: Orbitron
+}
 
+#ui_records {
+    font-family: Orbitron;
+    position:fixed;
+    top:0px;
+    width:100%;
+    text-align:center;
+    color: white;
+    text-shadow: 1px 1px black;
+    display: none;
+}
+#ui_records_type {
+    font-size: 48px;
+}
+#ui_records_value {
+    font-size: 36px;
 }
 
 #preloader {

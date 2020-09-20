@@ -2,17 +2,19 @@ class Player extends Entity {
 
     public velocity: Point = {x: 0, y:0}
     public airtime = 0
+    public falldist = 0
+    public isGrounded = false
+
     private rocketlauncher: Rocketlauncher
 
     constructor(rocketlauncher: Rocketlauncher) {
-        super( { x: 0, y: -500} )
+        super( { x: 0, y: -CONST.PLAYER_START_ALTITUDE} )
         this.sprite = new SimpleSprite(ImageResource.PLAYER)
         this.sprite.drawOrder = CONST.LAYER_PLAYER_FG
         this.sprite.renderPivot = {x:30, y:50}
         this.rocketlauncher = rocketlauncher
 
         this.behaviors.push(new class extends Behavior {
-            private isGrounded = false
             private timeSinceLastRocket = 0
 
             update(entity: Entity, deltaTime: number, state: State) : void {
@@ -21,7 +23,7 @@ class Player extends Entity {
                 player.velocity.y += CONST.GRAVITY * deltaTime
 
                 // apply input
-                let controlForce = deltaTime * ( this.isGrounded ? CONST.PLAYER_ACCEL_GROUND : CONST.PLAYER_ACCEL_AIR )
+                let controlForce = deltaTime * ( player.isGrounded ? CONST.PLAYER_ACCEL_GROUND : CONST.PLAYER_ACCEL_AIR )
                 if(Input.keyDown("KeyA") || Input.keyDown("ArrowLeft")) {
                     player.velocity.x -= controlForce
                     player.sprite.flipped = true
@@ -33,7 +35,7 @@ class Player extends Entity {
 
                 // apply friction
                 let frictionFraction: number;
-                if (this.isGrounded) {
+                if (player.isGrounded) {
                     frictionFraction = Math.pow((1 - CONST.PLAYER_FRICTION_GROUND), deltaTime )
                 } else {
                     frictionFraction = Math.pow((1 - CONST.PLAYER_FRICTION_AIR), deltaTime )
@@ -45,19 +47,25 @@ class Player extends Entity {
                 player.pos.x += player.velocity.x * deltaTime
                 player.pos.y += player.velocity.y * deltaTime
 
+                if (player.velocity.y > 0) {
+                    player.falldist += player.velocity.y * deltaTime
+                } else {
+                    player.falldist = 0
+                }
+
                 // ground collision checking
                 if (player.pos.y > CONST.PLAYER_GROUND_COLLISION) {
                     player.pos.y = CONST.PLAYER_GROUND_COLLISION;
-                    if (!this.isGrounded) {
+                    if (!player.isGrounded) {
                         player.velocity.x *= CONST.PLAYER_GROUND_BOUNCE
                         player.velocity.y *= -CONST.PLAYER_GROUND_BOUNCE
                     } else {
                         player.velocity.y = 0
                     }
-                    this.isGrounded = true
+                    player.isGrounded = true
                     player.airtime = 0
                 } else {
-                    this.isGrounded = false
+                    player.isGrounded = false
                     player.airtime += deltaTime
                 }
 

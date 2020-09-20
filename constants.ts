@@ -6,6 +6,7 @@ const CONST = {
     SCREEN_HEIGHT: 768,
 
     // physics sttings
+    PLAYER_START_ALTITUDE: 500, //height in pixels where the player spawns
     GRAVITY: 1000,  // Gravity in pixels per second²
     EXPLOSION_FORCE: 7000000, // impulse caused by rocket explosions
     EXPLOSION_MIN_RADIUS: 64, //radius in pixels from within the maximum explosion force is applied
@@ -24,6 +25,9 @@ const CONST = {
     // camera settings
     CAMERA_LEAD: 0.25,       // distance the camera leads ahead in direction of player trajectory
     CAMERA_AGILITY: 1.5,    // how fast the camera reacts to changes in direction
+
+    // UI settings
+    RECORD_SHOW_DURATION: 1,  // seconds a record stays on screen
 
     // mob properties
     MOB_BALLOON_RADIUS: 48, // radius of the collision hitcircle
