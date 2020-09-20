@@ -26,7 +26,7 @@ class Renderer {
         this.ctx.fillRect(0, offset.y, CONST.SCREEN_WIDTH, CONST.SCREEN_HEIGHT)
 
         // objects
-        state.entities.forEach(r => {
+        state.doWithAllEntities(r => {
             if (r.sprite && r.sprite.isLoaded) {
                 this.ctx.save()
                 this.ctx.translate( Math.round(r.pos.x + offset.x),

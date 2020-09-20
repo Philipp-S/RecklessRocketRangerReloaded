@@ -1,6 +1,7 @@
 // handler for resources
 enum ImageResource {
     PLAYER = "img/player.png",
+    ROCKETLAUNCHER = "img/rocketlauncher.png",
     BALLOON = "img/balloon.png",
     BIRD = "img/bird.png",
     UFO = "img/ufo.png",

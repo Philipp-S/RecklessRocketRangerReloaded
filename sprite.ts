@@ -3,6 +3,7 @@ abstract class Sprite {
     public renderPivot: Point = { x:0, y:0 }
     public isLoaded: boolean;
     public flipped: boolean = false;
+    public drawOrder: number;
 
     public abstract draw(ctx: CanvasRenderingContext2D): void
 }

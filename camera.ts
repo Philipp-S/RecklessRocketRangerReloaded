@@ -1,15 +1,22 @@
 class Camera extends Entity {
-    pos: Point = { x:0, y: 0}
 
-    private tracedEntity: Entity;
+    private player: Player;
+    private currentOffset: Point;
 
-    constructor(tracedEntity: Entity) {
+    constructor(player: Player) {
         super( {x:0, y:0})
-        this.tracedEntity = tracedEntity;
+        this.player = player;
+        this.currentOffset = { x:0, y: 0 }
 
     }
     update(deltaTime: number, state: State) : void {
-        this.pos = { x: this.tracedEntity.pos.x, y: this.tracedEntity.pos.y}
+        let desiredOffset =  { x: this.player.velocity.x * CONST.CAMERA_LEAD, 
+                               y: this.player.velocity.y * CONST.CAMERA_LEAD}
+        this.currentOffset.x += (desiredOffset.x - this.currentOffset.x) * deltaTime * CONST.CAMERA_AGILITY
+        this.currentOffset.y += (desiredOffset.y - this.currentOffset.y) * deltaTime * CONST.CAMERA_AGILITY
+
+        this.pos.x = this.player.pos.x + this.currentOffset.x
+        this.pos.y = this.player.pos.y + this.currentOffset.y
     }
 
     screenPointToWorld(screenPos: Point) {

@@ -125,7 +125,7 @@ class ExplodeOnImpactBehavior extends Behavior {
 
         // explode on enemy contact
         // There might be some optimization potential here. But this is a game jam, so who cares about performance :)
-        state.entities.forEach(other => {
+        state.doWithAllEntities(other => {
             if (other.collisionRadiusSqare > 0) {
                 let distX = entity.pos.x - other.pos.x
                 let distY = entity.pos.y - other.pos.y
@@ -146,7 +146,7 @@ class ExplodeOnImpactBehavior extends Behavior {
         explosionSprite.renderPivot = {x:100, y:200}
         explosionSprite.rotation = entity.sprite.rotation - Math.PI / 2
 
-        state.entities.push(new Particle(entity.pos,
+        state.addEntity(new Particle(entity.pos,
                                          explosionSprite,
                                          CONST.EXPLOSION_FX_LIFETIME));
         state.player.explosion(entity.pos)

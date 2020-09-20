@@ -1,0 +1,10 @@
+Explosion:
+	CC-0
+	https://opengameart.org/content/explosion-7
+Bird:
+	CC-0
+	https://opengameart.org/content/bird-cute-bird
+Font
+	Orbitron
+	Open Font License
+	https://fonts.google.com/specimen/Orbitron?category=Sans+Serif&vfonly=true#about

@@ -2,31 +2,19 @@ class Player extends Entity {
 
     private isGrounded = false
     private timeSinceLastRocket = 0
-    private velocity: Point = {x: 0, y:0}
-    public airtime = 0;
+    public velocity: Point = {x: 0, y:0}
+    public airtime = 0
+    private rocketlauncher: Rocketlauncher
 
-    constructor() {
+    constructor(rocketlauncher: Rocketlauncher) {
         super( { x: 0, y: -500} )
         this.sprite = new SimpleSprite(ImageResource.PLAYER)
-        this.sprite.renderPivot = {x:32, y:32}
+        this.sprite.drawOrder = CONST.LAYER_PLAYER_FG
+        this.sprite.renderPivot = {x:30, y:50}
+        this.rocketlauncher = rocketlauncher
     }
 
     update(deltaTime: number, state: State) : void {
-
-        // shooting
-        this.timeSinceLastRocket += deltaTime
-        if(Input.mouse.click && this.timeSinceLastRocket >= CONST.ROCKET_SHOOTING_COOLDOWN) {
-            this.timeSinceLastRocket = 0
-            let startPos = { x: this.pos.x,
-                             y: this.pos.y - CONST.ROCKET_START_HEIGHT }
-            state.entities.push(new Rocket(
-                startPos,
-                { x: state.cursor.pos.x - startPos.x,
-                  y: state.cursor.pos.y - startPos.y },
-                this.velocity
-            ))
-        }
-
         // apply gravity
         this.velocity.y += CONST.GRAVITY * deltaTime
 
@@ -34,9 +22,11 @@ class Player extends Entity {
         let controlForce = deltaTime * ( this.isGrounded ? CONST.PLAYER_ACCEL_GROUND : CONST.PLAYER_ACCEL_AIR )
         if(Input.keyDown("KeyA") || Input.keyDown("ArrowLeft")) {
             this.velocity.x -= controlForce
+            this.sprite.flipped = true
         }
         if(Input.keyDown("KeyD") || Input.keyDown("ArrowRight")) {
             this.velocity.x += controlForce
+            this.sprite.flipped = false
         }
 
         // apply friction
@@ -70,6 +60,29 @@ class Player extends Entity {
         }
 
 
+        // make sure the rocket launcher follows
+        this.rocketlauncher.pos.x = this.sprite.flipped ? this.pos.x + 8 : this.pos.x - 8
+        this.rocketlauncher.pos.y = this.pos.y - CONST.ROCKET_START_HEIGHT
+        this.rocketlauncher.sprite.flipped = this.sprite.flipped
+
+        // set direction of rocket launcher
+        let direction = { x: state.cursor.pos.x - this.rocketlauncher.pos.x,
+                          y: state.cursor.pos.y - this.rocketlauncher.pos.y }
+        this.rocketlauncher.sprite.rotation =  Math.atan(direction.y / direction.x)
+        if (direction.x > 0 === this.rocketlauncher.sprite.flipped) {
+            this.rocketlauncher.sprite.rotation += Math.PI
+        }
+        
+        // shooting
+        this.timeSinceLastRocket += deltaTime
+        if(Input.mouse.click && this.timeSinceLastRocket >= CONST.ROCKET_SHOOTING_COOLDOWN) {
+            this.timeSinceLastRocket = 0
+            state.addEntity(new Rocket(
+                this.rocketlauncher.pos,
+                direction,
+                this.velocity
+            ))
+        }
 
     }
 
@@ -90,5 +103,19 @@ class Player extends Entity {
             this.velocity.y = normalized.y * force
         }
 
+    }
+}
+
+class Rocketlauncher extends Entity {
+
+
+    constructor() {
+        super( {x:0, y:0} )
+        this.sprite = new SimpleSprite(ImageResource.ROCKETLAUNCHER)
+        this.sprite.renderPivot = {x:30, y:8}
+        this.sprite.drawOrder = CONST.LAYER_PLAYER_BG
+    }
+
+    update(deltaTime: number, state: State) : void {
     }
 }

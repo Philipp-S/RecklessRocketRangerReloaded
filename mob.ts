@@ -7,6 +7,7 @@ class Balloon extends Entity {
         super( pos )
         this.sprite = new SimpleSprite(ImageResource.BALLOON)
         this.sprite.renderPivot = { x: CONST.MOB_BALLOON_RADIUS, y: CONST.MOB_BALLOON_RADIUS}
+        this.sprite.drawOrder = CONST.LAYER_MOBS
         this.collisionRadiusSqare = CONST.MOB_BALLOON_RADIUS * CONST.MOB_BALLOON_RADIUS 
         
         this.behaviors.push(new SineMovementBehavior(this, 10, 2.0, "y"))
@@ -20,6 +21,7 @@ class Bird extends Entity {
         super( pos )
         this.sprite = new AnimatedSprite(ImageResource.BIRD, { x: 182, y:117 })
         this.sprite.renderPivot = { x: 77, y: 77}
+        this.sprite.drawOrder = CONST.LAYER_MOBS
         this.collisionRadiusSqare = CONST.MOB_BIRD_RADIUS * CONST.MOB_BIRD_RADIUS 
 
         this.behaviors.push(new SineMovementBehavior(this, CONST.MOB_BIRD_MOVE_RANGE, CONST.MOB_BIRD_MOVE_TIME, "x"))
@@ -33,6 +35,7 @@ class Ufo extends Entity {
         super( pos )
         this.sprite = new AnimatedSprite(ImageResource.UFO, { x: 131, y:75 })
         this.sprite.renderPivot = { x: 65, y: 40}
+        this.sprite.drawOrder = CONST.LAYER_MOBS
         this.collisionRadiusSqare = CONST.MOB_UFO_RADIUS * CONST.MOB_UFO_RADIUS 
 
         this.behaviors.push(new AnimatedBehavior(CONST.MOB_UFO_ANIMATION_LENGHT))        
@@ -49,7 +52,7 @@ class MobLayer {
     create: (pos:Point) => Entity
     spawn(state:State, start:number) {
         for (let i = 0; i < this.count; i++) {
-            state.entities.push(this.create({
+            state.addEntity(this.create({
                 x: Math.random() * CONST.CHUNK_WIDTH + start,
                 y: Math.pow(Math.random(), 2) * -this.range - this.from
              }))
@@ -65,7 +68,7 @@ class MobLayer {
 
 // these are the height levels at which the mobs spawn
 const MOB_LAYERS = [
-    new MobLayer((pos) => new Balloon(pos),   5 * CONST.METER,  10 * CONST.METER, 1),
+    new MobLayer((pos) => new Balloon(pos),   5 * CONST.METER,  15 * CONST.METER, 1),
     new MobLayer((pos) => new Balloon(pos),   5 * CONST.METER, 100 * CONST.METER, 10),
     new MobLayer((pos) => new Balloon(pos),   5 * CONST.METER, 300 * CONST.METER, 10),
     new MobLayer((pos) => new Bird(pos),    100 * CONST.METER,  20 * CONST.METER, 5),
