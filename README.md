@@ -1,4 +1,4 @@
-# RecklessRocketRangerReloaded
+# Reckless Rocket Ranger: Reloaded
 Made for [Open Jam 2020](https://itch.io/jam/open-jam-2020)
 
 3rd party assets used:
