@@ -43,7 +43,7 @@
 
 #preloader_frame {
     margin:auto; 
-    border:5px solid black; 
+    border:5px solid darkslategray; 
     border-radius: 5px;
     width:1000px; 
     padding:1px
@@ -52,7 +52,7 @@
 #preloader_bar {
     height:50px; 
     width:0%; 
-    background-color: aqua;
+    background-color: darkslateblue;
 }
 
 .indicator {

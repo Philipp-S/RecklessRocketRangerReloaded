@@ -12,5 +12,7 @@ class Rocket extends Entity {
         this.behaviors.push(new ExplodeOnImpactBehavior)
         this.behaviors.push(new ParticleEmitterBehavior(0.25, ImageResource.SPARK, 0.01, 3))
         this.behaviors.push(SelfDestructIfOffscreen)
+
+        new Audio(AudioResource.SHOOT).play()
     }
 }

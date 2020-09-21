@@ -156,6 +156,7 @@ class ExplodeOnImpactBehavior extends Behavior {
                                          false,
                                          0));
         state.player.explosion(entity.pos)
+        new Audio(AudioResource.EXPLOSION).play()
     }
 }
 

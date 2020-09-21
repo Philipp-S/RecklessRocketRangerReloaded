@@ -12,6 +12,12 @@ enum ImageResource {
     PUFF = "img/puff.png"
 }
 
+enum AudioResource {
+    BGM = "audio/heavy-trailer-2-by-sascha-ende-from-filmmusic-io.mp3",
+    SHOOT = "audio/shoot.ogg",
+    EXPLOSION = "audio/explosion.ogg",
+}
+
 class Preloader {
     
     private finishedFunc: () => void = () => {}
@@ -41,27 +47,39 @@ class Preloader {
             image.onerror = this.resourceFinished.bind(this)
             this.resources.push(image)
         }
+
+        for(let resource in AudioResource) {
+            let resourceUrl = AudioResource[resource];
+            console.log("Loading " + resourceUrl)
+            this.numLoading++
+            let audio = new Audio(resourceUrl)
+            audio.oncanplaythrough = this.resourceFinished.bind(this)
+            audio.onerror =  this.resourceFinished.bind(this)
+        }
     }
 
     private resourceFinished() {
         this.numFinished++
         this.preloadBarDiv.style.width = (this.numFinished / this.numLoading * 100).toString() + "%"
         if (this.numFinished === this.numLoading) {
-            this.preloadDiv.style.display = "none"
-            this.gameDiv.style.display = "block"
-            this.finished = true;
-            if (this.finishedFunc) {
-                this.finishedFunc()
-                this.finishedFunc = null
+            
+            let headline = document.getElementById("preloader_headline") as HTMLSpanElement
+            headline.textContent = "Click to start"
+            document.onclick = () => {
+                document.onclick = () => {}
+                this.preloadDiv.style.display = "none"
+                this.gameDiv.style.display = "block"
+                this.finished = true;
+                if (this.finishedFunc) {
+                    this.finishedFunc()
+                    this.finishedFunc = null
+                }
             }
+            
         }
     }
 
-    onFinish(func: () => void) {
-        if (this.finished) {
-            func()
-        } else {
-            this.finishedFunc = func;
-        }
+    onFinish(func: () => void) {      
+        this.finishedFunc = func;
     }
 }

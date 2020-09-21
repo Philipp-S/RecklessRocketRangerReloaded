@@ -8,8 +8,8 @@ const CONST = {
     // physics sttings
     PLAYER_START_ALTITUDE: 500, //height in pixels where the player spawns
     GRAVITY: 1000,  // Gravity in pixels per second²
-    EXPLOSION_FORCE: 7000000, // impulse caused by rocket explosions
-    EXPLOSION_MIN_RADIUS: 64, //radius in pixels from within the maximum explosion force is applied
+    EXPLOSION_FORCE: 30000000, // impulse caused by rocket explosions
+    EXPLOSION_MIN_RADIUS: 128, //radius in pixels from within the maximum explosion force is applied
     EXPLOSION_MAX_RADIUS: 640, //radius in pixels from without explosions are completely ignored
     PLAYER_GROUND_COLLISION: -46, //distance in pixels between player center of mass and feet
     PLAYER_ACCEL_GROUND: 0, // player acceleration on ground
@@ -36,7 +36,7 @@ const CONST = {
     MOB_BIRD_MOVE_RANGE: 400,   // movement range of bird mobs
     MOB_BIRD_MOVE_TIME: 10, // time it takes for the bird to move through its range
     MOB_UFO_RADIUS: 55, // radius of the collision hitcircle
-    MOB_UFO_ANIMATION_LENGHT: 0.2, // time for one animation cycle of the birds
+    MOB_UFO_ANIMATION_LENGHT: 0.2, // time for one animation cycle of the ufo
 
     // render order layers
     LAYER_BG: -1,

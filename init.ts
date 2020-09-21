@@ -3,6 +3,7 @@ class Game {
     public state: State
     public renderer: Renderer
     private ui: UI
+    private music: HTMLAudioElement
 
     private lastUpdate: number
 
@@ -11,6 +12,10 @@ class Game {
         this.state = new State()
         this.renderer = new Renderer(document.getElementById("canvas_main") as HTMLCanvasElement)
         this.ui = new UI()
+        this.music = new Audio(AudioResource.BGM)
+        this.music.loop = true
+        this.music.volume = 0.25
+        this.music.play()
         this.lastUpdate = NaN
     }
 
