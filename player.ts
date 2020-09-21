@@ -4,6 +4,7 @@ class Player extends Entity {
     public airtime = 0
     public falldist = 0
     public isGrounded = false
+    public kills = 0
 
     private rocketlauncher: Rocketlauncher
 

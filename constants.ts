@@ -27,7 +27,7 @@ const CONST = {
     CAMERA_AGILITY: 1.5,    // how fast the camera reacts to changes in direction
 
     // UI settings
-    RECORD_SHOW_DURATION: 1,  // seconds a record stays on screen
+    RECORD_SHOW_DURATION: 5,  // seconds a record stays on screen
 
     // mob properties
     MOB_BALLOON_RADIUS: 48, // radius of the collision hitcircle

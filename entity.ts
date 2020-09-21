@@ -138,6 +138,7 @@ class ExplodeOnImpactBehavior extends Behavior {
                     // collision detected
                     state.removeEntity(other)
                     this.explode(entity, state)
+                    state.player.kills++
                     return
                 }
             }
