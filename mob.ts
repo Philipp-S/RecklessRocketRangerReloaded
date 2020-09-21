@@ -39,8 +39,8 @@ class Ufo extends Entity {
         this.collisionRadiusSqare = CONST.MOB_UFO_RADIUS * CONST.MOB_UFO_RADIUS 
 
         this.behaviors.push(new AnimatedBehavior(CONST.MOB_UFO_ANIMATION_LENGHT, true))        
-        this.behaviors.push(new SineMovementBehavior(this, 600, 10, "x"))
-        this.behaviors.push(new SineMovementBehavior(this, 200, 4, "y"))
+        this.behaviors.push(new SineMovementBehavior(this, CONST.MOB_UFO_MOVE_RANGE_X, CONST.MOB_UFO_MOVE_TIME_X, "x"))
+        this.behaviors.push(new SineMovementBehavior(this, CONST.MOB_UFO_MOVE_RANGE_Y, CONST.MOB_UFO_MOVE_TIME_Y, "y"))
     }
 }
 

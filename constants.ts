@@ -37,6 +37,11 @@ const CONST = {
     MOB_BIRD_MOVE_TIME: 10, // time it takes for the bird to move through its range
     MOB_UFO_RADIUS: 55, // radius of the collision hitcircle
     MOB_UFO_ANIMATION_LENGHT: 0.2, // time for one animation cycle of the ufo
+    MOB_UFO_MOVE_RANGE_X: 600,
+    MOB_UFO_MOVE_TIME_X: 12,
+    MOB_UFO_MOVE_RANGE_Y: 200,
+    MOB_UFO_MOVE_TIME_Y: 4,
+
 
     // render order layers
     LAYER_BG: -1,
